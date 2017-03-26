@@ -1,0 +1,348 @@
+
+%https://en.wikibooks.org/wiki/LaTeX/Internationalization
+\usepackage[utf8]{inputenc}
+\usepackage[english,spanish]{babel}
+\def\spanishdeactivate{<>."}
+
+%https://www.sharelatex.com/learn/Aligning_equations_with_amsmath
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\usepackage{listingsutf8}%codigo con caracteres especiales
+
+
+%%ORT
+%metadata para la ORT
+\usepackage[unicode,
+            pdftex]{hyperref}
+\hypersetup{ 
+ pdfauthor={AUTORES},%TODO
+ pdftitle={TITULO},%TODO
+ pdfsubject={SUBJECT},%TODO
+ pdfkeywords={tag1; tag2; tag3}%TODO
+}
+
+
+
+%%%%%%%%%%%%%%%%%%% http://tex.stackexchange.com/a/103290
+%cambio de formato de titulos
+\usepackage{titlesec}
+
+%\titleformat{\paragraph}
+%  {\normalfont\fontsize{12}{15}\bfseries}{\theparagraph.}{1em}{}
+
+  %\titleformat*{\paragraph}
+  %{\normalfont\fontsize{12}\bfseries}{\theparagraph.}{1em}{}
+  
+  
+  \titleformat{\chapter}[display]
+{\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge}
+
+\titleformat{\section}
+{\normalfont\fontsize{20}{0}\bfseries}{\thesection}{1em}{}
+
+\titleformat{\subsection}
+{\normalfont\fontsize{18}{0}\bfseries}{\thesubsection}{1em}{}
+
+\titleformat{\subsubsection}
+{\normalfont\fontsize{15}{0}\bfseries}{\thesubsubsection}{1em}{}
+
+\titleformat{\paragraph}
+{\normalfont\fontsize{13}{0}\bfseries}{}{1em}{}%no se muestra el numero, para agregarlo incluir \theparagraph
+
+\titleformat{\subparagraph}
+{\normalfont\fontsize{11}{0}\bfseries}{}{1em}{}%no se muestra el numero, para agregarlo incluir \thesubparagraph
+
+%espacios despues de titulos
+%defaults en http://ctan.dcc.uchile.cl/macros/latex/contrib/titlesec/titlesec.pdf dentro de Standard Classes
+\titlespacing*{\chapter}        {0pt}{50pt}{40pt}
+\titlespacing*{\section}        {0pt}{3.5ex plus 1ex minus .2ex} {2.3ex plus .2ex}
+\titlespacing*{\subsection}     {0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+\titlespacing*{\subsubsection}  {0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+\titlespacing*{\paragraph}      {0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+\titlespacing*{\subparagraph}   {0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%posición de la numeración
+\usepackage{fancyhdr}
+\fancypagestyle{plain}{% Redefining plain page style
+  \fancyhf{} %clear all header and footer fields
+  \fancyfoot[RO]{\thepage}
+}%
+\fancyhf{} %clear all header and footer fields
+\fancyfoot[RO]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\pagestyle{fancy}
+
+%%Nombre del índice tabla de contenido
+\renewcommand\contentsname{Índice}
+
+%%para incluir imagenes
+\usepackage{graphicx}
+
+%%para la bibliografía
+%%cambia el nombre
+\renewcommand\bibname{Referencias Bibliográficas}
+%%la agrega al indice
+\usepackage[nottoc,numbib]{tocbibind}
+
+%%para los capítulos
+\makeatletter
+\def\@makechapterhead#1{%
+  \vspace*{50\p@}%
+  {\parindent \z@ \raggedright \normalfont
+    \ifnum \c@secnumdepth >\m@ne
+        \huge\bfseries \space \thechapter\space
+    %    \par\nobreak
+    %    \vskip 20\p@
+    \fi
+    \interlinepenalty\@M
+    \Huge \bfseries #1\par\nobreak
+    \vskip 40\p@
+  }}
+  \makeatother
+  
+  
+  
+%%para poner letras no ascii en el código fuente 
+\lstset{
+  literate=
+           {á}{{\'a}}1
+           {é}{{\'e}}1
+           {í}{{\'i}}1
+           {ó}{{\'o}}1
+           {ú}{{\'u}}1
+           {ñ}{{\~n}}1
+           {Á}{{\'A}}1
+           {É}{{\'E}}1
+           {Í}{{\'I}}1
+           {Ó}{{\'O}}1
+           {Ú}{{\'U}}1
+           {Ñ}{{\~N}}1
+}
+
+
+
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \setcounter{secnumdepth}{5}
+ \usepackage[table,xcdraw]{xcolor}
+
+%%%%%%%%%%%%%%%%%% ecuaciones mas grandes
+% http://tex.stackexchange.com/a/160440
+%uso
+%\begin{equationBig}
+%        {\frac {1}{2}}
+%\end{equationBig}
+\usepackage{graphicx}
+\usepackage{environ}
+\NewEnviron{equationBig}{%
+    \begin{equation*}
+    \scalebox{1.8}{$\BODY$}
+    \end{equation*}
+    }
+    
+    
+%%%%%%%%%%%%%%%%%%%%%%Inclusion de codigo
+\usepackage{listings}
+\usepackage{color}
+
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+\definecolor{string}{rgb}{0.47,0.43,0.32}
+
+%\lstset{ %
+%	backgroundcolor=\color{white},   % choose the background color
+%	basicstyle=\ttfamily,        % size of fonts used for the code
+%	breaklines=true,                 % automatic line breaking only at whitespace
+%	captionpos=b,                    % sets the caption-position to bottom
+%	commentstyle=\color{mygreen},    % comment style
+%	escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+%	keywordstyle=\color{blue},       % keyword style
+%	stringstyle=\color{string},     % string literal style
+%	morecomment=[l]//,
+%	otherkeywords={ static, finish , async , for , while , here , at , var , val, public, private, protected, def},
+%}
+
+\definecolor{lightgray}{rgb}{.9,.9,.9}
+\definecolor{darkgray}{rgb}{.4,.4,.4}
+\definecolor{purple}{rgb}{0.65, 0.12, 0.82}
+
+\lstdefinelanguage{x10}{
+  keywords={static, new, true, false, catch, def, return, null, switch, var, val, if, in, while, for, do, else, case, break, class, throw, this, private, protected, public},
+  keywordstyle=\color{blue}\bfseries,
+  ndkeywords={finish, async, at, here},
+  ndkeywordstyle=\color{mymauve}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{mygreen}\ttfamily,
+  stringstyle=\color{string}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+
+\lstset{
+   language=x10,
+   %backgroundcolor=\color{},
+   extendedchars=true,
+   basicstyle=\footnotesize\ttfamily,
+   showstringspaces=false,
+   showspaces=false,
+   numbers=left,
+   numberstyle=\footnotesize,
+   numbersep=9pt,
+   tabsize=2,
+   breaklines=true,
+   showtabs=false,
+   captionpos=b,
+   columns=flexible,
+   keepspaces=true
+}
+
+\makeatletter
+\def\lst@outputspace{{\ifx\lst@bkgcolor\empty\color{white}\else\lst@bkgcolor\fi\lst@visiblespace}}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%% graficos
+\usepackage{geometry}
+\usepackage[utf8]{inputenc}
+
+\usepackage{pgfplots}
+\usepackage{pgf-pie}
+\usepackage{pgfplotstable}
+
+\pgfplotsset{width=10cm,compat=1.9}
+
+\usepackage{booktabs}
+%\usepackage{graphicx}%se incluye antes
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%% cambiar idioma cosas
+%\renewcommand{\figurename}{Fig.}
+\renewcommand\spanishfigurename{Figura}
+\renewcommand\spanishtablename{Tabla}
+\addto\captionsspanish{%http://stackoverflow.com/a/9106469/4671917
+  \renewcommand{\lstlistingname}%
+{Código}%
+ }
+
+%%%%%%%%%%%%%%%%%%%%%%%% listas con mas elementos
+\usepackage{enumitem}
+
+
+\setlistdepth{9}
+
+\newlist{noLabel}{enumerate}{9}
+\setlist[noLabel,1]{label={}}
+\setlist[noLabel,2]{label={}}
+\setlist[noLabel,3]{label={}}
+\setlist[noLabel,4]{label={}}
+\setlist[noLabel,5]{label={}}
+\setlist[noLabel,6]{label={}}
+\setlist[noLabel,7]{label={}}
+\setlist[noLabel,8]{label={}}
+\setlist[noLabel,9]{label={}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% para que las figuras no se pusheen al final
+\usepackage[section]{placeins} %http://tex.stackexchange.com/a/98992
+%permite inpedir que queden figuras float pendientes depues de un punto, uso:
+%\FloatBarrier
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% para evitar problemas con babel y comillas en los nombres de archivos
+\usepackage{grffile} %http://tex.stackexchange.com/a/4132
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% para poner un recuadro al rededor del texto
+\usepackage{framed} % http://tex.stackexchange.com/a/53843
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% para poder hacer captions de mas de una linea
+\usepackage{caption} % http://tex.stackexchange.com/a/112660
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% para que el espacio entre parrafos se mas grande
+%\usepackage[parfill]{parskip}
+%\setlength{\parskip}{0.8em}%se usa eso, pero se hace el cambio en el Main despues de la tabla de contenido. %https://www.sharelatex.com/learn/Paragraph_formatting
+%\setlength{\parskip}{\baselineskip}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% para que las figuras queden centradas
+%http://www.ctan.org/pkg/floatrow
+\usepackage{floatrow}%http://tex.stackexchange.com/a/2652
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% para importar archivos (no usarlo daba problemas en sharelatex)
+%https://www.sharelatex.com/learn/Management_in_a_large_project
+\usepackage{import}
+
+%%%%%%%%%%%%%%%%%%%%%%%%% para crear tablas complejas
+%http://www.tablesgenerator.com/ para crear tablas complejas
+\usepackage{multirow}
+
+%%%%%%%%%%%%%%%%%%%%%%%%% para tener ecuaciones de mas de una linea
+%http://tex.stackexchange.com/a/3793
+\usepackage{amsmath}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%% linea de timepo http://tex.stackexchange.com/a/198372
+\newcommand\ytl[2]{%con texto del lado izquierdo de la linea
+\parbox[b]{8em}{\hfill{\color{black}\bfseries\sffamily #1}~$\cdots\cdots$~}\makebox[0pt][c]{$\bullet$}\vrule\quad \parbox[c]{6cm}{\vspace{7pt}\color{red!40!black!80}\raggedright\sffamily #2\\[7pt]}\\[-3pt]}
+
+\newcommand\ytll[1]{%sin texto del lado izquierdo de la linea
+\parbox[b]{8em}{\hfill{}}\makebox[0pt][c]{$\bullet$}\vrule\quad \parbox[c]{6cm}{\vspace{7pt}\color{red!40!black!80}\raggedright\sffamily #1\\[7pt]}\\[-3pt]}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%% Para incluir pdfs de multiples paginas (de a una pagina a la vez)
+\usepackage{pdfpages}
+
+%%%%%%%%%%%%%%%%%%%%%% ancho columnas
+%http://tex.stackexchange.com/a/41761
+\makeatletter
+
+\newcolumntype{1}{@{\hskip\tabcolsep\vrule width 1pt\hsize=0\tabcolsep}}
+\makeatother
+
+
+%%%%%%%%%%%%%%%%%%%%% Define un nuevo comando, que permite crear subseciones que no son mostradas en la tabla de contenido, ideal para los anexos
+%http://stackoverflow.com/a/3805470
+
+
+\newcommand{\hiddensubsection}[1]{
+    \stepcounter{subsection}
+    \subsection*{\arabic{chapter}.\arabic{section}.\arabic{subsection}\hspace{1em}{#1}}
+}
+
+
+
+%%%%%%%%%%%%%%%%%% separacion entre numero y texto en el indice
+%http://tex.stackexchange.com/a/16293
+\usepackage{tocstyle}
+\usetocstyle{standard}
+
+
+%%%%%%%%%%%%%%%%%% impide que se separe un parrafo en dos paginas si es menor a 3 lineas
+%http://tex.stackexchange.com/a/21985
+\widowpenalties 4 10000 10000 5000 0
+\raggedbottom
+
+%%%%%%%%%%%%%%%%%% permite usar ifthenelse
+%http://tex.stackexchange.com/a/58629
+\usepackage{xifthen}
+
+%%%%%%%%%%%%%%%%% referencias con nombre y numero
+%http://tex.stackexchange.com/a/121871
+\newcommand*{\fullref}[2][]{
+\ifthenelse{\equal{#1}{}}
+{\hyperref[{#2}]{\ref*{#2} \nameref*{#2}}}
+{\hyperref[{#2}]{\ref*{#2} {#1}}}
+}
+
+%%%%%%%%%%%%%%%% proxima linea en \item y otros casos
+\newcommand*{\nextLine}[0]{\mbox{}\\}

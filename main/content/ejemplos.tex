@@ -1,0 +1,91 @@
+\chapter{Ejemplos}
+    
+    \section{Jerarquía de títulos: Section}
+        \subsection{Subsection}
+            \subsubsection{Subsubsection}
+                \paragraph{Paragraph}
+                    \subparagraph{Subparagraph}
+                    
+    \section{Cita}
+        En esta oración se hace referencia a dos trabajos \cite{knn_franco_franz,herman}. Para esto se utilizo el codigo: 
+        \texttt{\string\cite\string{knn\_franco\_franz,herman\string}}
+        %\texttt{\\cite\{knn_franco_franz,herman\}}.
+        
+    \section{Referencia}
+        \subsection{Crear un punto referenciable}\label{subsec:referenciable}
+            Esta subseccion es referenciable, para lograrlo, se agrego \texttt{\\label{subsec:referenciable}}. Donde \texttt{subsec:referenciable} es el nombre de la etiqueta, el prefijo \texttt{subsec} corresponde a el tipo de elemento referenciado (esta es una convencion, su uso no es obligatorio \cite{latex-labels}).
+            
+        \subsection{Referenciar}
+            En esta subseccion se hace referencia a la seccion \nameref{subsec:referenciable}.
+            
+            \begin{itemize}
+                \item Solo numero: \ref{subsec:referenciable}
+                \item Solo nombre: \nameref{subsec:referenciable}
+                \item Numero y nombre: \fullref{subsec:referenciable}
+                \item Numero y nombre \textit{custom}: \fullref[Nombre \textit{Custom}]{subsec:referenciable}
+            \end{itemize}
+        
+    \section{Texto entre comillas}
+        Para que el texto figure entre `comillas' se deben utilizar los caracteres \char18\string' de forma similar a este ejemplo \texttt{\char18comillas\string'}.
+
+    \section{Ecuaciones}
+        \subsection{Normal}
+        \begin{equation}
+                {\frac {\sum \limits _{i=1}^{n}w_{i}x_{i}}{\sum \limits _{i=1}^{n}w_{i}}}
+        \end{equation}
+        
+        \subsection{Grande}
+        \begin{equationBig}
+                {\frac {\sum \limits _{i=1}^{n}w_{i}x_{i}}{\sum \limits _{i=1}^{n}w_{i}}}
+        \end{equationBig}
+        
+    \section{Listados}
+        \subsection{Enumeracion}
+        
+            \begin{enumerate}
+                \item Primer punto
+                \item Segundo punto
+                \item Tercer punto
+            \end{enumerate}
+            
+        \subsection{Items}
+        
+            \begin{itemize}
+                \item Primer punto
+                \item Segundo punto
+                \item Tercer punto
+            \end{itemize}
+        
+        \subsection{Descripcion}
+        
+            \begin{description}
+                \item[Primer punto] Primer punto
+                \item[Segundo punto] Segundo punto
+                \item[Tercer punto] \nextLine
+                    Tercer punto
+            \end{description}
+        
+        \subsection{Múltiples niveles}
+        
+            \begin{itemize}
+                \item Primer punto
+                \begin{enumerate}
+                    \item Primer punto
+                    \item Segundo punto
+                    \item Tercer punto
+                \end{enumerate}
+                
+                \item Segundo punto
+                \begin{itemize}
+                    \item Primer punto
+                    \item Segundo punto
+                    \item Tercer punto
+                \end{itemize}
+                \item Tercer punto
+                \begin{description}
+                    \item[Primer punto] Primer punto
+                    \item[Segundo punto] Segundo punto
+                    \item[Tercer punto] \nextLine 
+                        Tercer punto
+                \end{description}
+            \end{itemize}
